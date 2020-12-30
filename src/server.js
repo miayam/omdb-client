@@ -14,8 +14,17 @@ const content = render(<App />);
 const layout =`
   <!DOCTYPE html>
   <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>OMDB Client App</title>
+        <link rel="icon" type="image/vnd.microsoft.icon" href="https://www.omdbapi.com/favicon.ico" />
+        <link rel="stylesheet" href="client.css" />
+    </head>
     <body>
+      <div id="root">
         ${content}
+      </div>
     </body>
     <script type="module" src="client.js" async></script>
   </html>
@@ -27,6 +36,12 @@ app.get('/', (_, response) => { // Listen for requests to the root path
 
 app.get('/client.js', (_, response) => {
   response.sendFile('client.js', {
+    root: __dirname, // This will be the build folder
+  });
+});
+
+app.get('/client.css', (_, response) => {
+  response.sendFile('client.css', {
     root: __dirname, // This will be the build folder
   });
 });

@@ -1,21 +1,24 @@
 import { h } from 'preact';
-import { useState } from 'preact/hooks'
+import './index.scss';
 
-const Card = () => {
-    // how many clicks have we counted? Default to 0
-    const [count, setCount] = useState(0)
-
-    // shared event handler
-    const handleClick = () => {
-        console.log('tahu');
-        setCount(count + 1)
-    }
+const Card = (props) => {
+    const {
+        header,
+        children,
+        ...rest
+    } = props;
 
     return (
-        <button onClick={handleClick}>
-            This is a card bro!
-            <span>{count}</span>
-        </button>
+        <div
+            class={'aCard'}
+            role="presentation"
+            {...rest}
+        >
+            {header}
+            <div class="aCard__content">
+                {children}
+            </div>
+        </div>
     );
 };
 

@@ -1,0 +1,10 @@
+.aCard {
+    border: 1px dotted rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    cursor: pointer;
+    background: white;
+
+    &__content {
+        padding: 16px;
+    }
+}

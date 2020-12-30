@@ -5,6 +5,8 @@ import alias from '@rollup/plugin-alias';
 import { babel } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
+import postcss from 'rollup-plugin-postcss';
+import cssnano from 'cssnano';
 
 export default [
   {
@@ -16,13 +18,21 @@ export default [
     plugins: [
         resolve(),
         babel({ babelHelpers: 'bundled' }),
-        commonjs(),
         alias({
             entries: [
                 { find: 'react', replacement: 'preact/compat' },
                 { find: 'react-dom', replacement: 'preact/compat' }
             ]
+        }),
+        postcss({
+            extract: false,
+            modules: false,
+            use: ['sass'],
+            plugins: [
+              cssnano()
+            ]
         })
+ 
     ]
   },
   {
@@ -34,7 +44,10 @@ export default [
     },
     plugins: [
         resolve(),
-        babel(),
+        babel({
+          exclude: 'node_modules/**',
+          babelHelpers: 'bundled'
+        }),
         commonjs(),
         alias({
             entries: [
@@ -42,7 +55,15 @@ export default [
                 { find: 'react-dom', replacement: 'preact/compat' }
             ]
         }),
-        terser()
+        terser(),
+        postcss({
+            extract: true,
+            modules: false,
+            use: ['sass'],
+            plugins: [
+              cssnano()
+            ]
+        })
     ]
   }
 ];
