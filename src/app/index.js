@@ -2,7 +2,7 @@ import { h } from 'preact';
 import Router from './router';
 
 const App = () => (
-    <div class="root">
+    <div id="root">
         <Router/>
     </div>
 );

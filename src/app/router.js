@@ -1,9 +1,10 @@
 import { h } from 'preact';
+import Card from '../components/atoms/Card';
 
-const router = () => (
+const Router = () => (
     <div>
-        This is router bro!
+        <Card/>
     </div>
 );
 
-export default router;
+export default Router;

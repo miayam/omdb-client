@@ -3,6 +3,8 @@
 import resolve from '@rollup/plugin-node-resolve';
 import alias from '@rollup/plugin-alias';
 import { babel } from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import { terser } from 'rollup-plugin-terser';
 
 export default [
   {
@@ -14,6 +16,7 @@ export default [
     plugins: [
         resolve(),
         babel({ babelHelpers: 'bundled' }),
+        commonjs(),
         alias({
             entries: [
                 { find: 'react', replacement: 'preact/compat' },
@@ -31,13 +34,15 @@ export default [
     },
     plugins: [
         resolve(),
-        babel({ babelHelpers: 'bundled' }),
+        babel(),
+        commonjs(),
         alias({
             entries: [
                 { find: 'react', replacement: 'preact/compat' },
                 { find: 'react-dom', replacement: 'preact/compat' }
             ]
-        })
+        }),
+        terser()
     ]
   }
 ];
