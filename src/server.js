@@ -1,7 +1,9 @@
+import { h } from 'preact';
+import render from 'preact-render-to-string'
+import Card from './components/atoms/Card';
+
 const express = require('express')
 const compression = require('compression')
-import render from 'preact-render-to-string'
-import { h } from 'preact';
 
 const app = express(); // Create the express app
 app.use(compression()); // Use gzip for all requests
@@ -9,6 +11,7 @@ app.use(compression()); // Use gzip for all requests
 const content = render(
     <h1>
         Oka Hachiro... He is a monster himself
+        <Card/>
     </h1>
 );
 
