@@ -18,12 +18,6 @@ export default [
     plugins: [
         resolve(),
         babel({ babelHelpers: 'bundled' }),
-        alias({
-            entries: [
-                { find: 'react', replacement: 'preact/compat' },
-                { find: 'react-dom', replacement: 'preact/compat' }
-            ]
-        }),
         postcss({
             extract: false,
             modules: false,
@@ -32,7 +26,6 @@ export default [
               cssnano()
             ]
         })
- 
     ]
   },
   {

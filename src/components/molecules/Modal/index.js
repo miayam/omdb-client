@@ -10,7 +10,7 @@ import {
     Fragment,
     findDOMNode,
     createPortal
-} from 'preact/compat';
+} from 'preact/compat'; // Similar to react-dom
 
 import './index.scss';
 
@@ -62,12 +62,12 @@ const Modal = (props) => {
 
     return (
         <Fragment>
-         <ForwardRefComponent ref={triggerRef}>
-           {trigger({
-                onClick: onOpen,
-                onKeyDown: onKeyDown
-           })}
-         </ForwardRefComponent>
+            <ForwardRefComponent ref={triggerRef}>
+            {trigger({
+                    onClick: onOpen,
+                    onKeyDown: onKeyDown
+            })}
+            </ForwardRefComponent>
             {isOpen && createPortal(
                 <aside
                     aria-modal="true"
