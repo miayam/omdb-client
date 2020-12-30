@@ -21,5 +21,23 @@ export default [
             ]
         })
     ]
+  },
+  {
+    input: 'src/client.js',
+    output: {
+      file: 'build/client.js',
+      format: 'es', // ES Module format for modern browsers
+      name: 'client',
+    },
+    plugins: [
+        resolve(),
+        babel({ babelHelpers: 'bundled' }),
+        alias({
+            entries: [
+                { find: 'react', replacement: 'preact/compat' },
+                { find: 'react-dom', replacement: 'preact/compat' }
+            ]
+        })
+    ]
   }
 ];
