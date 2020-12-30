@@ -1,6 +1,8 @@
 // rollup.config.js
 
 import resolve from '@rollup/plugin-node-resolve';
+import alias from '@rollup/plugin-alias';
+import { babel } from '@rollup/plugin-babel';
 
 export default [
   {
@@ -9,6 +11,15 @@ export default [
       file: 'build/server.js', // Compile it into this file
       format: 'cjs', // Use the CommonJS format, which works with Node
     },
-    plugins: [resolve()], // Use the node-resolve plugin so dependencies get imported properly
+    plugins: [
+        resolve(),
+        babel({ babelHelpers: 'bundled' }),
+        alias({
+            entries: [
+                { find: 'react', replacement: 'preact/compat' },
+                { find: 'react-dom', replacement: 'preact/compat' }
+            ]
+        })
+    ]
   }
 ];
