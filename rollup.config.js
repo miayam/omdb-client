@@ -27,7 +27,7 @@ export default [
     output: {
       file: 'build/client.js',
       format: 'es', // ES Module format for modern browsers
-      name: 'client',
+      name: 'client'
     },
     plugins: [
         resolve(),
