@@ -1,4 +1,5 @@
-import { h } from 'preact';
+import {h} from 'preact';
+import React from 'react';
 import Routes from './routes';
 
 const App = (url) => (
@@ -6,5 +7,6 @@ const App = (url) => (
         <Routes url={url}/>
     </div>
 );
+
 
 export default App;

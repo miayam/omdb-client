@@ -7,6 +7,8 @@ import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import cssnano from 'cssnano';
+import inject from 'rollup-plugin-inject'
+
 
 export default [
   {
@@ -17,7 +19,19 @@ export default [
     },
     plugins: [
         resolve(),
-        babel({ babelHelpers: 'bundled' }),
+        babel({
+          exclude: 'node_modules/**',
+          babelHelpers: 'bundled'
+        }),
+        alias({
+            entries: [
+                { find: 'react', replacement: 'preact/compat' },
+                { find: 'react-dom', replacement: 'preact/compat' }
+            ]
+        }),
+        commonjs({
+          include: "node_modules/**",
+        }),
         postcss({
             extract: false,
             modules: false,
@@ -25,7 +39,12 @@ export default [
             plugins: [
               cssnano()
             ]
+        }),
+        inject({
+            include: 'node_modules/webfontloader/**',
+            window: 'global/window'
         })
+ 
     ]
   },
   {
@@ -41,7 +60,9 @@ export default [
           exclude: 'node_modules/**',
           babelHelpers: 'bundled'
         }),
-        commonjs(),
+        commonjs({
+          include: "node_modules/**",
+        }),
         alias({
             entries: [
                 { find: 'react', replacement: 'preact/compat' },
@@ -56,6 +77,10 @@ export default [
             plugins: [
               cssnano()
             ]
+        }),
+        inject({
+            include: 'node_modules/webfontloader/**',
+            window: 'global/window'
         })
     ]
   }

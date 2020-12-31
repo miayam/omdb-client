@@ -1,5 +1,9 @@
 import { h } from 'preact';
+import React from 'react';
 import render from 'preact-render-to-string'
+import { createStore } from 'redux';
+import { composedEnhancers, rootReducer } from './store';
+import { Provider } from 'react-redux';
 import App from './app';
 
 const express = require('express')
@@ -9,7 +13,7 @@ const app = express(); // Create the express app
 app.use(compression()); // Use gzip for all requests
 
 // Some basic html to show
-const layout = () =>  `
+const layout = (preloadedState) =>  `
   <!DOCTYPE html>
   <html>
     <head>
@@ -21,19 +25,39 @@ const layout = () =>  `
     </head>
     <body>
       <div id="root">
-        ${render(<App />)}
+        ${
+          render(
+            <Provider
+              store={
+                createStore(
+                  rootReducer,
+                  preloadedState,
+                  composedEnhancers
+                )
+              }>
+              <App />
+            </Provider>
+        )}
       </div>
     </body>
+    <script>
+        // WARNING: See the following for security issues around embedding JSON in HTML:
+        // https://redux.js.org/recipes/server-rendering/#security-considerations
+        window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
+          /</g,
+          '\\u003c'
+        )}
+    </script>
     <script type="module" src="/client.js" async></script>
   </html>
 `
 
 app.get('/', (_, response) => { // Listen for requests to the root path
-  response.send(layout()); // Send the HTML string
+  response.send(layout({data: ['nurjaman'], isLoading: false})); // Send the HTML string
 });
 
 app.get('/movies/:id', (_, response) => { // Listen for requests to the root path
-  response.send(layout()); // Send the HTML string
+  response.send(layout({data: ['nurjaman'], isLoading: false})); // Send the HTML string
 });
 
 app.get('/client.js', (_, response) => {
