@@ -1,9 +1,9 @@
 import { h } from 'preact';
-import Router from './router';
+import Routes from './routes';
 
-const App = () => (
+const App = (url) => (
     <div id="app">
-        <Router/>
+        <Routes url={url}/>
     </div>
 );
 

@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "preact": "^10.5.7",
     "preact-render-to-string": "^5.1.12",
+    "preact-router": "^3.2.1",
     "redux": "^4.0.5",
     "redux-actions": "^2.6.5",
     "redux-pender": "^2.0.12"

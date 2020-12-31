@@ -1,4 +1,6 @@
 import { hydrate } from 'preact';
 import App from './app';
 
-hydrate(App(), document.getElementById('root'));
+const root = document.getElementById('root');
+
+hydrate(App(), root, root.lastChild);
