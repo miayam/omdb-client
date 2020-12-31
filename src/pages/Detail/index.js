@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import React from 'react';
 import Card from '../../components/atoms/Card';
 import Spinner from '../../components/atoms/Spinner';
 import Modal from '../../components/molecules/Modal';

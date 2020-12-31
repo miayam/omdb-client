@@ -13,7 +13,7 @@ const app = express(); // Create the express app
 app.use(compression()); // Use gzip for all requests
 
 // Some basic html to show
-const layout = (preloadedState) =>  `
+const layout = (preloadedState, store) => `
   <!DOCTYPE html>
   <html>
     <head>
@@ -28,13 +28,8 @@ const layout = (preloadedState) =>  `
         ${
           render(
             <Provider
-              store={
-                createStore(
-                  rootReducer,
-                  preloadedState,
-                  composedEnhancers
-                )
-              }>
+              store={store}
+            >
               <App />
             </Provider>
         )}
@@ -53,11 +48,31 @@ const layout = (preloadedState) =>  `
 `
 
 app.get('/', (_, response) => { // Listen for requests to the root path
-  response.send(layout({data: ['nurjaman'], isLoading: false})); // Send the HTML string
+  const preloadedState = { data: [], isLoading: false };
+  response.send(
+    layout(
+      preloadedState,
+      createStore(
+        rootReducer,
+        preloadedState,
+        composedEnhancers
+      )
+    )
+  );
 });
 
 app.get('/movies/:id', (_, response) => { // Listen for requests to the root path
-  response.send(layout({data: ['nurjaman'], isLoading: false})); // Send the HTML string
+  const preloadedState = { data: [], isLoading: false };
+  response.send(
+    layout(
+      preloadedState,
+      createStore(
+        rootReducer,
+        preloadedState,
+        composedEnhancers
+      )
+    )
+  );
 });
 
 app.get('/client.js', (_, response) => {
