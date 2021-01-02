@@ -46,8 +46,7 @@ const layout = (preloadedState, store) => `
     <script type="module" src="/client.js" async></script>
   </html>
 `
-
-app.get('/', (_, response) => { // Listen for requests to the root path
+const preloadedResponse = (response) => {
   const preloadedState = { data: [], isLoading: false };
   response.send(
     layout(
@@ -59,20 +58,14 @@ app.get('/', (_, response) => { // Listen for requests to the root path
       )
     )
   );
+}
+
+app.get('/', (_, response) => { // Listen for requests to the root path
+  preloadedResponse(response);
 });
 
 app.get('/movies/:id', (_, response) => { // Listen for requests to the root path
-  const preloadedState = { data: [], isLoading: false };
-  response.send(
-    layout(
-      preloadedState,
-      createStore(
-        rootReducer,
-        preloadedState,
-        composedEnhancers
-      )
-    )
-  );
+  preloadedResponse(response);
 });
 
 app.get('/client.js', (_, response) => {

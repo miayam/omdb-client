@@ -1,6 +1,8 @@
-import { hydrate } from 'React';
+import { hydrate, h } from 'preact';
 import App from './app';
+import { createStore } from 'redux';
 import { rootReducer, composedEnhancers } from './store';
+import { Provider } from 'react-redux';
 
 // Grab the state from a global variable injected into the server-generated HTML
 const preloadedState = window.__PRELOADED_STATE__

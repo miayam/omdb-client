@@ -7,8 +7,30 @@ import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import cssnano from 'cssnano';
-import inject from 'rollup-plugin-inject'
+import inject from 'rollup-plugin-inject';
+import replace from 'rollup-plugin-replace';
 
+const commonPlugins = [
+    resolve(),
+    babel({
+      exclude: 'node_modules/**',
+      babelHelpers: 'bundled'
+    }),
+    alias({
+        entries: [
+            { find: 'react', replacement: 'preact/compat' },
+            { find: 'react-dom', replacement: 'preact/compat' }
+        ]
+    }),
+    commonjs({
+      include: "node_modules/**",
+    }),
+    inject({
+        include: 'node_modules/webfontloader/**',
+        window: 'global/window'
+    }),
+    terser()
+];
 
 export default [
   {
@@ -18,21 +40,7 @@ export default [
       format: 'cjs', // Use the CommonJS format, which works with Node
     },
     plugins: [
-        resolve(),
-        babel({
-          exclude: 'node_modules/**',
-          babelHelpers: 'bundled'
-        }),
-        alias({
-            entries: [
-                { find: 'react', replacement: 'preact/compat' },
-                { find: 'react-dom', replacement: 'preact/compat' }
-            ]
-        }),
-        commonjs({
-          include: "node_modules/**",
-        }),
-        postcss({
+       postcss({
             extract: false,
             modules: false,
             use: ['sass'],
@@ -40,12 +48,8 @@ export default [
               cssnano()
             ]
         }),
-        inject({
-            include: 'node_modules/webfontloader/**',
-            window: 'global/window'
-        })
- 
-    ]
+        ...commonPlugins
+   ]
   },
   {
     input: 'src/client.js',
@@ -55,21 +59,9 @@ export default [
       name: 'client'
     },
     plugins: [
-        resolve(),
-        babel({
-          exclude: 'node_modules/**',
-          babelHelpers: 'bundled'
+        replace({
+            'process.env.NODE_ENV': JSON.stringify('production')
         }),
-        commonjs({
-          include: "node_modules/**",
-        }),
-        alias({
-            entries: [
-                { find: 'react', replacement: 'preact/compat' },
-                { find: 'react-dom', replacement: 'preact/compat' }
-            ]
-        }),
-        terser(),
         postcss({
             extract: true,
             modules: false,
@@ -78,10 +70,7 @@ export default [
               cssnano()
             ]
         }),
-        inject({
-            include: 'node_modules/webfontloader/**',
-            window: 'global/window'
-        })
+        ...commonPlugins
     ]
   }
 ];
