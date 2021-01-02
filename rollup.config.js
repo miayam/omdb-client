@@ -8,7 +8,7 @@ import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import cssnano from 'cssnano';
 import inject from 'rollup-plugin-inject';
-import replace from 'rollup-plugin-replace';
+import injectProcessEnv from 'rollup-plugin-inject-process-env';
 
 const commonPlugins = [
     resolve(),
@@ -29,7 +29,10 @@ const commonPlugins = [
         include: 'node_modules/webfontloader/**',
         window: 'global/window'
     }),
-    terser()
+    terser(),
+    injectProcessEnv({ 
+        NODE_ENV: "production"
+    }),
 ];
 
 export default [
@@ -59,9 +62,6 @@ export default [
       name: 'client'
     },
     plugins: [
-        replace({
-            'process.env.NODE_ENV': JSON.stringify('production')
-        }),
         postcss({
             extract: true,
             modules: false,
