@@ -47,7 +47,16 @@ const layout = (preloadedState, store) => `
   </html>
 `
 const preloadedResponse = (response) => {
-  const preloadedState = { data: [], isLoading: false };
+  const preloadedState = {
+    search: {
+      data: [],
+      isLoading: false
+    },
+    detail: {
+      isLoading: false
+    }
+  };
+
   response.send(
     layout(
       preloadedState,
