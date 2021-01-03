@@ -1,0 +1,21 @@
+.mSearchBox {
+    width: 100%;
+    display: flex;
+    position: fixed;
+    margin: 0 auto;
+    margin-bottom: 48px;
+    top: 0;
+
+    &__input {
+        margin: 0;
+        text-align: center;
+        padding: 8px;
+        border: 10px solid #F7F7F7;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        border-radius: 5px;
+        font-size: 18px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
+    }
+}

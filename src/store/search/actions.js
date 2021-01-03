@@ -1,13 +1,14 @@
 import { OMDB_API, OMDB_KEY } from "utils/constant";
 import {
     LOAD_SEARCH_RESULT,
-    START_FETCHING
+    START_FETCHING,
+    RELOAD_SEARCH_RESULT
 } from './constant';
 
 // A work-around to provide async await syntax when SSR-ed.
 import "regenerator-runtime/runtime.js";
 
-export const loadSearchResult =  (params) => async (dispatch) => {
+export const loadSearchResult =  (params, type = LOAD_SEARCH_RESULT) => async (dispatch) => {
     dispatch({type: START_FETCHING});
 
     const queryParams= Object.entries(params).map(([key, val]) => `${key}=${val}`).join('&');
@@ -16,7 +17,7 @@ export const loadSearchResult =  (params) => async (dispatch) => {
     const { Search: search, ...rest } = data;
 
     dispatch({
-        type: LOAD_SEARCH_RESULT,
+        type,
         payload: {
             data: [
                 ...search
@@ -28,3 +29,4 @@ export const loadSearchResult =  (params) => async (dispatch) => {
         }
     });
 };
+

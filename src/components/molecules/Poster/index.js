@@ -25,6 +25,7 @@ const Poster = (props) => {
                                 onClick={onClick}
                                 onKeyDown={onKeyDown}
                                 src={item.Poster}
+                                loading="lazy"
                                 class="mPoster__trigger"
                             />
                         )}
@@ -32,9 +33,10 @@ const Poster = (props) => {
                         <img
                             alt={item.Title}
                             src={item.Poster}
+                            loading="lazy"
                             class="mPoster__content"
                         />
-                </Modal>
+                    </Modal>
                 }
             >
                 <Link href={`/movies/${item.imdbID}`}>
