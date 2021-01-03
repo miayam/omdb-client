@@ -26,6 +26,7 @@ To set up localhost, run this command:
 ```sh
 $ npm run develop
 ```
+You will see the result on [localhost:3000](http://localhost:3000)
 
 ### Testing
 ```sh
