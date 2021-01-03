@@ -69,11 +69,14 @@ const preloadedResponse = (response) => {
   );
 }
 
+/*
+ * Manually provide routing, because it is just a simple app :)
+ */
 app.get('/', (_, response) => { // Listen for requests to the root path
   preloadedResponse(response);
 });
 
-app.get('/movies/:id', (_, response) => { // Listen for requests to the root path
+app.get('/movies/:id', (_, response) => { // Listen for requests to the movies path
   preloadedResponse(response);
 });
 
