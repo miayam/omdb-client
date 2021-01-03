@@ -8,5 +8,29 @@ A brutalist web app built and designed by Muhammad D. R. using Preact and friend
 - [Special Thanks](#thanks)
 
 ## Usage
+- [Requirement](#requirement)
+- [Development](#development)
+
+### Requirement
+You must install [nvm](https://github.com/nvm-sh/nvm). You will be using Node version set in `.nvmrc`.
+
+After you have installed `nvm`, run this command:
+```sh
+$ nvm install
+$ nvm use
+```
+
+### Development
+To set up localhost, run this command:
+
+```sh
+$ npm run develop
+```
+
+### Testing
+```sh
+$ npm run test
+```
 
 ## Special Thanks
+Oka Hachiro
