@@ -22,12 +22,14 @@ export const normalizeData = (data) => {
 const Reducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_SEARCH_RESULT:
+            const { data, ...rest} = action.payload;
             return {
                 ...state,
                 data: {
                     ...state.data,
                     ...normalizeData(action.payload.data)
                 },
+                ...rest,
                 isLoading: false
             }
         case START_FETCHING:
@@ -35,7 +37,7 @@ const Reducer = (state = initialState, action) => {
                 ...state,
                 isLoading: true
             }
-        default:
+       default:
             return state;
     }
 }

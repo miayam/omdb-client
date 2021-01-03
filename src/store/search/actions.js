@@ -13,14 +13,18 @@ export const loadSearchResult =  (params) => async (dispatch) => {
     const queryParams= Object.entries(params).map(([key, val]) => `${key}=${val}`).join('&');
     const response = await fetch(`${OMDB_API}/?apikey=${OMDB_KEY}&${queryParams}`);
     const data = await response.json();
-    const { Search: search } = data;
+    const { Search: search, ...rest } = data;
 
     dispatch({
         type: LOAD_SEARCH_RESULT,
         payload: {
             data: [
                 ...search
-            ]
+            ],
+            params: {
+                ...params
+            },
+            ...rest
         }
     });
 };

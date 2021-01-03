@@ -2,31 +2,23 @@ import { h } from 'preact';
 import { connect } from 'react-redux';
 import { useEffect } from 'preact/hooks';
 import { loadSearchResult } from 'store/search/actions';
-import PosterList from 'organisms/PosterList';
+import SearchResultContent from 'templates/SearchResultContent';
 
 const Home = (props) => {
-    const { dispatch, searchResult } = props;
+    const { dispatch, s, page } = props;
 
     useEffect(() => {
         dispatch(loadSearchResult({
-            s: 'Batman',
-            page: 1
+            s: s ? s : 'Batman',
+            page: page ? page : 1
         }));
     }, [])
 
     return (
-        <div>
-            <PosterList data={searchResult} />
+        <div class="pHome">
+            <SearchResultContent />
         </div>
     );
 }
 
-const mapStateToProps = (state) => ({
-    searchResult: Object.keys(state.search.data).map((key) => (
-        state.search.data[key]
-    ))
-});
-
-export default connect(
-    mapStateToProps
-)(Home);
+export default connect()(Home);

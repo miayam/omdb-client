@@ -19,7 +19,7 @@ const PosterList = (props) => {
                     <Poster item={item} />
                 )) : (
                     <div class="oPosterList__empty">
-                        <Spinner /> Loading...
+                        <Spinner /> Empty...
                     </div>
                 )
             }
