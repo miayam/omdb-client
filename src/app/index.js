@@ -1,5 +1,4 @@
-import {h} from 'preact';
-import React from 'react';
+import { h } from 'preact';
 import Routes from './routes';
 
 const App = (url) => (
