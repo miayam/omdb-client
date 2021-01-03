@@ -6,11 +6,12 @@ describe('@atoms/Card', () => {
     test('shows children if provided', () => {
         const children = 'Oka Hachiro';
         render(<Card>{children}</Card>);
-        expect(screen.getByText('Oka Hachiro')).toBeInTheDocument();
+        expect(screen.getByText(/Oka Hachiro/)).toBeInTheDocument();
+        expect(screen.queryByText(/Oka Hachiro/)).toBeInTheDocument();
     })
 
     test('shows header if provided', () => {
-        const altText = 'Oka Hachiro';
+        const altText = 'Oka Hachiro, he is a monster himself...';
         const header = (
             <img
                 alt={altText}
@@ -19,6 +20,7 @@ describe('@atoms/Card', () => {
         );
 
         render(<Card header={header} />);
-        expect(screen.getByAltText('Oka Hachiro')).toBeInTheDocument();
+        expect(screen.getByAltText(/Oka Hachiro/)).toBeInTheDocument();
+        expect(screen.queryByAltText(/Oka Hachiro/)).toBeInTheDocument();
     })
 });

@@ -63,10 +63,10 @@ const Modal = (props) => {
     return (
         <Fragment>
             <ForwardRefComponent ref={triggerRef}>
-            {trigger({
-                    onClick: onOpen,
-                    onKeyDown: onKeyDown
-            })}
+                {trigger({
+                        onClick: onOpen,
+                        onKeyDown: onKeyDown
+                })}
             </ForwardRefComponent>
             {isOpen && createPortal(
                 <aside
