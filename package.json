@@ -8,8 +8,7 @@
     "rollup": "rollup --config --watch",
     "develop": "npm-run-all -p nodemon rollup",
     "build:rollup": "rollup -c --environment INCLUDE_DEPS,BUILD:production",
-    "build:server": "node build/server.js",
-    "build": "npm-run-all -p build:*",
+    "build": "npm-run-all -s build:*",
     "start": "node build/server.js",
     "test": "jest"
   },
