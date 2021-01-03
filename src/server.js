@@ -93,4 +93,4 @@ app.get('/client.css', (_, response) => {
   });
 });
 
-app.listen(3000); // Listen for requests on port 3000
+app.listen(process.env.PORT || 3000); // Listen for requests on port 3000
