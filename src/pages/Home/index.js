@@ -1,10 +1,22 @@
 import { h } from 'preact';
-import Card from '../../components/atoms/Card';
-import Spinner from '../../components/atoms/Spinner';
-import Modal from '../../components/molecules/Modal';
+import Card from 'atoms/Card';
+import Spinner from 'atoms/Spinner';
+import Modal from 'molecules/Modal';
+import { connect } from 'react-redux';
+import { useEffect } from 'preact/hooks';
+import { loadSearchResult } from 'store/search/actions';
 
 const Home = (props) => {
+    const { dispatch } = props;
+
     console.log(props);
+
+    useEffect(() => {
+        dispatch(loadSearchResult({
+            s: 'Batman',
+            page: 1
+        }));
+    }, [])
 
     return (
         <div>
@@ -28,4 +40,10 @@ const Home = (props) => {
     );
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+    search: state.search
+});
+
+export default connect(
+    mapStateToProps
+)(Home);

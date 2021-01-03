@@ -1,0 +1,2 @@
+export const LOAD_PRODUCT_DETAIL = 'detail/LOAD_PRODUCT_DETAIL';
+export const START_FETCHING = 'detail/START_FETCHING';

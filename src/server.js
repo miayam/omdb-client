@@ -49,10 +49,11 @@ const layout = (preloadedState, store) => `
 const preloadedResponse = (response) => {
   const preloadedState = {
     search: {
-      data: [],
+      data: {},
       isLoading: false
     },
     detail: {
+      data: {},
       isLoading: false
     }
   };

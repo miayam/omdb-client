@@ -1,11 +1,18 @@
 import { h } from 'preact';
+import Card from 'atoms/Card';
+import Spinner from 'atoms/Spinner';
 import React from 'react';
-import Card from '../../components/atoms/Card';
-import Spinner from '../../components/atoms/Spinner';
-import Modal from '../../components/molecules/Modal';
+import Modal from 'molecules/Modal';
+import { connect } from 'react-redux';
+import { useEffect } from 'preact/hooks';
+import { loadProductDetail } from 'store/detail/actions';
 
 const Detail = (props) => {
-    console.log(props);
+    const { dispatch, id } = props;
+
+    useEffect(() => {
+        dispatch(loadProductDetail(id));
+    }, []);
 
     return (
         <div>
@@ -29,4 +36,10 @@ const Detail = (props) => {
     );
 }
 
-export default Detail;
+const mapStateToProps = (state) => ({
+    detail: state.detail
+});
+
+export default connect(
+    mapStateToProps
+)(Detail);

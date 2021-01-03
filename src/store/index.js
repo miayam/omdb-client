@@ -4,11 +4,13 @@ import {
     compose
 } from "redux";
 import thunk from 'redux-thunk';
-import searchReducer from './search/reducer';
 import { composeWithDevTools } from 'redux-devtools-extension'
+import searchReducer from './search/reducer';
+import detailReducer from './detail/reducer';
 
 export const rootReducer = combineReducers({
-    search: searchReducer
+    search: searchReducer,
+    detail: detailReducer
 })
 
 const middlewareEnhancer = applyMiddleware(thunk)
@@ -19,6 +21,6 @@ export const composedEnhancers = composeWithDevTools(
 
 export default {
     rootReducer,
-    middlewareEnhancer
+    composedEnhancers
 }
 

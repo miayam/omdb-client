@@ -4,8 +4,19 @@ import {
 } from './constant';
 
 const initialState = {
-    data: [],
+    data: {},
     isLoading: false
+}
+
+export const normalizeData = (data) => {
+    return data.reduce((prev, curr) => {
+        return {
+            ...prev,
+            [curr.imdbID]: {
+                ...curr
+            }
+        }
+    }, {});
 }
 
 const Reducer = (state = initialState, action) => {
@@ -13,7 +24,10 @@ const Reducer = (state = initialState, action) => {
         case LOAD_SEARCH_RESULT:
             return {
                 ...state,
-                ...action.payload,
+                data: {
+                    ...state.data,
+                    ...normalizeData(action.payload.data)
+                },
                 isLoading: false
             }
         case START_FETCHING:

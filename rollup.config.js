@@ -9,6 +9,7 @@ import postcss from 'rollup-plugin-postcss';
 import cssnano from 'cssnano';
 import inject from 'rollup-plugin-inject';
 import injectProcessEnv from 'rollup-plugin-inject-process-env';
+import json from '@rollup/plugin-json';
 
 const path = require('path');
 
@@ -18,13 +19,18 @@ const commonPlugins = [
       exclude: 'node_modules/**',
       babelHelpers: 'bundled'
     }),
+    json(),
     alias({
         entries: [
             { find: 'react', replacement: 'preact/compat' },
             { find: 'react-dom', replacement: 'preact/compat' },
             { find: 'pages', replacement: path.resolve(__dirname, 'src/pages') },
-            { find: 'components', replacement: path.resolve(__dirname, 'src/components') },
+            { find: 'atoms', replacement: path.resolve(__dirname, 'src/components/atoms') },
+            { find: 'molecules', replacement: path.resolve(__dirname, 'src/components/molecules') },
+            { find: 'organisms', replacement: path.resolve(__dirname, 'src/components/organisms') },
+            { find: 'templates', replacement: path.resolve(__dirname, 'src/components/templates') },
             { find: 'utils', replacement: path.resolve(__dirname, 'src/utils') },
+            { find: 'store', replacement: path.resolve(__dirname, 'src/store') }
         ]
     }),
     commonjs({
