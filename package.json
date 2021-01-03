@@ -9,7 +9,7 @@
     "develop": "npm-run-all -p nodemon rollup",
     "build:rollup": "rollup -c --environment INCLUDE_DEPS,BUILD:production",
     "build:server": "node build/server.js",
-    "build": "npm-run-all -s build:*",
+    "build": "npm-run-all -p build:*",
     "start": "node build/server.js",
     "test": "jest"
   },
