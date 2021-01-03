@@ -23,15 +23,15 @@
             top: 50%;
             height: auto;
             transform: translate(-50%, -50%);
-            max-width: 40%;
+            max-width: 480px;
             max-height: calc(100% - 1em);
         }
     }
 
     &__close {
         position: absolute;
-        right: 8px;
-        top: 8px;
+        right: 12px;
+        top: 24px;
         font-size: 25px;
         background: black;
         color: white;

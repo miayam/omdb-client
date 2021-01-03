@@ -9,9 +9,12 @@ import "regenerator-runtime/runtime.js";
 
 export const loadSearchResult =  (params) => async (dispatch) => {
     dispatch({type: START_FETCHING});
-    const response = await fetch(`${OMDB_API}/?apikey=${OMDB_KEY}&s=${params.s}&page=${params.page}`);
+
+    const queryParams= Object.entries(params).map(([key, val]) => `${key}=${val}`).join('&');
+    const response = await fetch(`${OMDB_API}/?apikey=${OMDB_KEY}&${queryParams}`);
     const data = await response.json();
     const { Search: search } = data;
+
     dispatch({
         type: LOAD_SEARCH_RESULT,
         payload: {

@@ -3,8 +3,28 @@
     border-radius: 4px;
     cursor: pointer;
     background: white;
+    overflow: hidden;
+    padding: 8px;
 
     &__content {
-        padding: 16px;
+        font-weight: 600;
+        font-size: 18px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 80%;
+        margin: 16px auto;
+
+        & > * {
+            width: 100%;
+            text-align: center;
+            line-height: 1.5;
+
+            &:hover,
+            &:visited {
+                text-decoration: none;
+            }
+        }
     }
 }

@@ -1,0 +1,14 @@
+.mPoster {
+    margin: 24px 16px;
+
+    &__trigger {
+        object-fit: cover;
+        width: 100%;
+    }
+
+    &__content {
+        max-width: 480px;
+        width: 100%;
+        padding: 16px 0;
+    }
+}

@@ -6,7 +6,10 @@
   "scripts": {
     "nodemon": "nodemon --watch build/server.js build/server.js",
     "rollup": "rollup --config --watch",
-    "start": "npm-run-all --parallel nodemon rollup",
+    "develop": "npm-run-all -p nodemon rollup",
+    "build": "npm-run-all -s build:*",
+    "build:rollup": "rollup -c --environment INCLUDE_DEPS,BUILD:production",
+    "start": "node build/server.js",
     "test": "jest"
   },
   "keywords": [
@@ -55,7 +58,6 @@
     "rollup-plugin-inject-process-env": "^1.3.1",
     "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
-    "sass": "^1.32.0",
-    "tslib": "^2.0.3"
+    "sass": "^1.32.0"
   }
 }

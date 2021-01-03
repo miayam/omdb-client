@@ -11,7 +11,7 @@ const Card = (props) => {
     return (
         <div
             class={'aCard'}
-            data-test-id={'aCard-test'}
+            data-testid={'aCard-test'}
             role="presentation"
             {...rest}
         >

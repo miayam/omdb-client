@@ -8,6 +8,7 @@ import Modal from '.';
 
 let trigger;
 let mockClick;
+let content;
 
 beforeEach(() => {
     mockClick = jest.fn();
@@ -22,11 +23,11 @@ beforeEach(() => {
             Oka Hachiro
         </button>
     );
+    content = "I am Oka Hachiro, I played pingpong in college, I took Karate course online. Do you think you can beat me?"
 })
 
 describe('@molecules/Modal', () => {
     it('appears that the trigger is clickable', async () => {
-        const content = "I am Oka Hachiro, I played pingpong in college, I took Karate course online. Do you think you can beat me?"
         const rendered =render(<Modal trigger={trigger}><p>{content}</p></Modal>, {container: document.body});
         const button = rendered.getByText(/Oka Hachiro/);
 
@@ -40,7 +41,6 @@ describe('@molecules/Modal', () => {
     });
 
     it('shows popup when the trigger is clicked', async () => {
-        const content = "I am Oka Hachiro, I played pingpong in college, I took Karate course online. Do you think you can beat me?"
         const rendered =render(<Modal trigger={trigger}><p>{content}</p></Modal>, {container: document.body});
         const button = rendered.getByText(/Oka Hachiro/);
 
@@ -54,7 +54,6 @@ describe('@molecules/Modal', () => {
     });
 
     it('close the popup when users click close button', () => {
-        const content = "I am Oka Hachiro, I played pingpong in college, I took Karate course online. Do you think you can beat me?"
         const rendered =render(<Modal trigger={trigger}><p>{content}</p></Modal>, {container: document.body});
         const button = rendered.getByText(/Oka Hachiro/);
         const closeText = '×';
@@ -74,7 +73,6 @@ describe('@molecules/Modal', () => {
     });
 
     it('close the popup when users click outside the dialog', () => {
-        const content = "I am Oka Hachiro, I played pingpong in college, I took Karate course online. Do you think you can beat me?"
         const rendered =render(<Modal trigger={trigger}><p>{content}</p></Modal>, {container: document.body});
         const button = rendered.getByText(/Oka Hachiro/);
 
