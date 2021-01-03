@@ -7,9 +7,9 @@
     "nodemon": "nodemon --watch build/server.js build/server.js",
     "rollup": "rollup --config --watch",
     "develop": "npm-run-all -p nodemon rollup",
-    "build": "npm-run-all -s build:*",
-    "build:rollup": "rollup -c --environment INCLUDE_DEPS,BUILD:production",
-    "start": "node build/server.js",
+    "start:rollup": "rollup -c --environment INCLUDE_DEPS,BUILD:production",
+    "start:server": "node build/server.js",
+    "start": "npm-run-all -s start:*",
     "test": "jest"
   },
   "keywords": [
@@ -22,7 +22,6 @@
   "dependencies": {
     "compression": "^1.7.4",
     "express": "^4.17.1",
-    "lodash.throttle": "^4.1.1",
     "preact": "^10.5.7",
     "preact-render-to-string": "^5.1.12",
     "preact-router": "^3.2.1",
