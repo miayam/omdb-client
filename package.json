@@ -7,10 +7,14 @@
     "nodemon": "nodemon --watch build/server.js build/server.js",
     "rollup": "rollup --config --watch",
     "develop": "npm-run-all -p nodemon rollup",
-    "start:rollup": "rollup -c --environment INCLUDE_DEPS,BUILD:production",
-    "start:server": "node build/server.js",
-    "start": "npm-run-all -s start:*",
+    "build:rollup": "rollup -c --environment INCLUDE_DEPS,BUILD:production",
+    "build:server": "node build/server.js",
+    "build": "npm-run-all -s build:*",
+    "start": "node build/server.js",
     "test": "jest"
+  },
+  "engines": {
+    "node": "14.x"
   },
   "keywords": [
     "preact",
