@@ -10,6 +10,8 @@ import cssnano from 'cssnano';
 import inject from 'rollup-plugin-inject';
 import injectProcessEnv from 'rollup-plugin-inject-process-env';
 
+const path = require('path');
+
 const commonPlugins = [
     resolve(),
     babel({
@@ -19,7 +21,10 @@ const commonPlugins = [
     alias({
         entries: [
             { find: 'react', replacement: 'preact/compat' },
-            { find: 'react-dom', replacement: 'preact/compat' }
+            { find: 'react-dom', replacement: 'preact/compat' },
+            { find: 'pages', replacement: path.resolve(__dirname, 'src/pages') },
+            { find: 'components', replacement: path.resolve(__dirname, 'src/components') },
+            { find: 'utils', replacement: path.resolve(__dirname, 'src/utils') },
         ]
     }),
     commonjs({
