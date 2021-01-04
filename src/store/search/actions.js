@@ -1,8 +1,7 @@
 import { OMDB_API, OMDB_KEY } from "utils/constant";
 import {
     LOAD_SEARCH_RESULT,
-    START_FETCHING,
-    RELOAD_SEARCH_RESULT
+    START_FETCHING
 } from './constant';
 
 // A work-around to provide async await syntax when SSR-ed.
