@@ -38,7 +38,7 @@ const Poster = (props) => {
                     </Modal>
                 }
             >
-                <a alt={item.Title} href={`/movies/${item.imdbID}`}>
+                <a alt={item.Title} native href={`/movies/${item.imdbID}`}>
                     <p>{item.Title}</p>
                 </a>
             </Card>

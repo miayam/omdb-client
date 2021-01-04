@@ -5,6 +5,7 @@ import Modal from 'molecules/Modal';
 import Spinner from 'atoms/Spinner';
 import { useEffect } from 'preact/hooks';
 import { loadProductDetail } from 'store/detail/actions';
+import { Link } from 'preact-router';
 
 import './index.scss';
 
@@ -29,7 +30,7 @@ const ProductDetailContent = (props) => {
             class="tProductDetailContent"
         >
             <aside class="tProductDetailContent__back">
-                <a href='/'>Back</a>
+                <Link href='/'>Back</Link>
             </aside>
             {
                 keysSize > 0 && (
