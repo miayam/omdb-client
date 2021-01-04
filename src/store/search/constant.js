@@ -1,2 +1,3 @@
 export const LOAD_SEARCH_RESULT = 'search/LOAD_SEARCH_RESULT';
 export const START_FETCHING = 'search/START_FETCHING';
+export const RELOAD_SEARCH_RESULT = 'search/RELOAD_SEARCH_RESULT';
