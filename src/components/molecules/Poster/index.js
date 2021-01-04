@@ -1,5 +1,4 @@
 import { h } from 'preact';
-import { Link } from 'preact-router';
 import Card from 'atoms/Card';
 import Modal from 'molecules/Modal';
 import './index.scss';
@@ -39,9 +38,9 @@ const Poster = (props) => {
                     </Modal>
                 }
             >
-                <Link href={`/movies/${item.imdbID}`}>
+                <a alt={item.Title} href={`/movies/${item.imdbID}`}>
                     <p>{item.Title}</p>
-                </Link>
+                </a>
             </Card>
         </div>
     );

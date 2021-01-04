@@ -26,7 +26,7 @@ const SearchResultContent = (props) => {
     const ref = useRef(null);
     const visible = useIntersecting(ref, {
         threshold: 1,
-        rootMargin: '500px'
+        rootMargin: '100px'
     });
     const [ nothingToScroll, setNothingToScroll ] = useState(false);
 
@@ -53,9 +53,7 @@ const SearchResultContent = (props) => {
         >
             <SearchBox />
             <PosterList data={searchResult} />
-            {searchResult.length > 0 && (
-                <div ref={ref} />
-            )}
+            <div ref={ref} />
             {
                 isLoading ? (
                     <div class="tSearchResultContent__loadMore">
